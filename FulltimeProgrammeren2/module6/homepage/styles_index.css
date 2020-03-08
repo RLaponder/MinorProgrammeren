@@ -1,0 +1,31 @@
+/****************************************************************************
+ * styles_index.css
+ *
+ * Fulltime programmeren 2
+ * Robin Laponder
+ *
+ * Problem set: homepage
+ ***************************************************************************/
+body {
+  background-color: black;
+  width: 1000px;
+  height: 580px;
+  background-image: url('index_background.png');
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: center top;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+}
+
+button {
+  margin: 5px 25px 5px 25px;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  width: 90px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50px;
+  border: none;
+}

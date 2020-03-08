@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<table class="table table-bordered table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for line in data %}
+            <tr>
+            {% for element in line %}
+                <td> {{ line[element] }} </td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

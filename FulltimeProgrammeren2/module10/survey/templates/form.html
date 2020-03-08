@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Registration form</h1>
+    <br>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form name="RegForm" onsubmit="return validateForm()" action="/form" method="post">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Enter your name" type="text" id="validationServer01">
+            <div class="valid-feedback">
+            </div>
+        </div>
+        <br>
+
+        <div class="custom-control custom-radio">
+            <input type="radio" id="male" name="gender" value="Male" class="custom-control-input">
+            <label class="custom-control-label" for="male">Male</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="female" name="gender" value="Female" class="custom-control-input">
+            <label class="custom-control-label" for="female">Female</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="other" name="gender" value="Other" class="custom-control-input">
+            <label class="custom-control-label" for="other">Other</label>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <select class="custom-select" id="Dropdown" name="age">
+                <option value="select age" selected disabled>Select your age</option>
+                <option value = "16 - 20" >16 - 20</option>
+                <option value = "21 - 25" >21 - 25</option>
+                <option value = "26 - 30" >26 - 30</option>
+                <option value = "31 - 35" >31 - 35</option>
+                <option value = "36 - 40" >36 - 40</option>
+                <option value = "40+"     >40+    </option>
+            </select>
+          </div>
+
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm()
+        {
+            var name = document.forms["RegForm"]["name"];
+            var age = document.forms["RegForm"]["age"];
+
+            if (name.value == "")
+            {
+                window.alert("Please enter your name.");
+                name.focus();
+                return false;
+            }
+            if ($("input[type=radio]:checked").length == 0)
+            {
+                window.alert("Please select your gender.");
+                return false;
+            }
+            if (age.value == "select age")
+            {
+                window.alert("Please select your age.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+{% endblock %}

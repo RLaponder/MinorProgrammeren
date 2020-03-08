@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="col">
+            <form action="/compare" enctype="multipart/form-data" method="post">
+                <div class="form-row">
+                    <div class="form-group col-3.5">
+                        <input class="form-control-file" name="file1" type="file">
+                        <small id="File1HelpBlock" class="form-text text-muted">
+                        Select the first file you would like to compare.
+                        </small>
+                    </div>
+                    <div class="form-group col-3.5">
+                        <input class="form-control-file" name="file2" type="file">
+                        <small id="File2HelpBlock" class="form-text text-muted">
+                        Select the second file you would like to compare.
+                        </small>
+                    </div>
+                </div>
+                <p></p>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="algorithm" type="radio" value="lines">
+                            Compare lines
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="algorithm" type="radio" value="sentences">
+                            Compare sentences
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="algorithm" type="radio" value="substrings">
+                            Compare substrings
+                            <input class="form-control form-control-sm" min="1" name="length" placeholder="of length n" type="number">
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-outline-success btn-lg" type="submit">Compare</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
