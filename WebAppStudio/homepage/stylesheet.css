@@ -1,0 +1,188 @@
+* {
+  font-family: calibri;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+ul.menu-area {
+  margin: 0;
+}
+
+body {
+  background-image: url(amsterdam.jpg);
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  height: 100vh;
+}
+
+.menu-area li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.navigation_bar {
+  padding-top: 25px;
+}
+
+nav {
+  position: relative;
+  width: calc(100% - 60px);
+  margin: 0 auto;
+  padding: 5px 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 600px) {
+  .logo {
+    display: none;
+  }
+}
+.logo {
+  width: 15%;
+  color: white;
+  font-size: 25px;
+  padding-left: 2%;
+  letter-spacing: 3px;
+}
+
+nav .logo, nav ul {
+  display: inline-block;
+}
+nav ul {
+  float: right;
+}
+
+.menu-area a {
+  color: white;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+  padding: 0 25px;
+  font-size: 14px;
+  line-height: 30px;
+  position: relative;
+  text-decoration: none;
+}
+
+.menu-area a:hover {
+  background: black;
+}
+
+.navigation_bar a.active {
+  background-color: black;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.7);
+  width: calc(100% - 60px);
+  height: screen;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 50px 0 50px;
+  position: relative;
+  margin: auto auto auto auto;
+  text-align: center;
+  font-size: 25px;
+  color: #3d3d3d;
+  letter-spacing: 5px;
+  font-weight: 100;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.column2, .column1 {
+  flex: 50%;
+  max-width: 50%;
+}
+
+.column1 {
+  padding: 25px 30px 25px 140px;
+}
+
+.column2 {
+  padding: 25px 140px 25px 30px;
+}
+
+.column1 img {
+  margin-top: 50px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.column2 img {
+  margin-top: 50px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .column1, .column2 {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+.column1 a:hover, .column2 a:hover {
+  opacity: 0.8;
+}
+
+table {
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  padding: 15px;
+}
+
+#header {
+  font-weight: 500;
+  background-color: rgba(168, 187, 245, 0.4);
+}
+
+.carousel {
+  margin: 10px;
+}
+
+.carousel-inner > .item > img {
+  height: 475px;
+  margin: auto;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.7);
+  width: calc(100% - 60px);
+  height: screen;
+}
+
+.col-xs-6 {
+  padding: 0 0 0 0;
+}
+
+.col-xs-6 h1 {
+  font-size: 50px;
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-75%);
+  font-weight: 100;
+}
+
+.row {
+  padding: 0 0 0 0;
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
