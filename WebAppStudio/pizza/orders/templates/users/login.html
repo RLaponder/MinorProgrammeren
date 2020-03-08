@@ -1,0 +1,25 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<h1>Login</h1>
+
+<!-- Login form. -->
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    <div class="u-form-group u-form-name">
+        <label for="name-b4fa" class="u-form-control-hidden u-label">Username</label>
+        <input type="username" placeholder="Name" id="name-b4fa" name="username" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-email u-form-group">
+        <label for="password-b4fa" class="u-form-control-hidden u-label">Password</label>
+        <input type="password" placeholder="Password" id="password-b4fa" name="password" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <input class="submit" type="submit" value="Login"/>
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Overlast
+{% endblock %}
+
+{% block body %}
+<!-- Registration form -->
+<div class="container" style="margin-top:5vw; margin-bottom:5vw">
+    <form class="form-horizontal register-form" action="{% url 'overlast' activiteit.id %}" onSubmit="return checkForm(this)" method="POST">
+        {% csrf_token %}
+        <h3>Overlast melden</h3>
+        <!-- activiteit -->
+        <div class="form-group">
+            <label for="categorie"></label>
+            <select class="form-control" id="categorie" name="categorie">
+                <option selected disabled>{{ activiteit.name }} van {{ activiteit.gebruiker }}</option>
+            </select>
+        </div>
+        
+        <!-- beschrijving -->
+        <div class="form-group">
+            <label for="beschrijving">Geef een beschrijving van de overlast die je ervaart. 
+                Dit bericht zal verzonden worden naar de organisator van de activiteit.
+            </label>
+            <textarea class="form-control" id="beschrijving" name="beschrijving" rows="5"></textarea>
+        </div>
+
+        <!-- submit -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="save"></label>
+            <div>
+                <button style="text-align:center" id="save" name="save" class="submit btn btn-info">Verzenden</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

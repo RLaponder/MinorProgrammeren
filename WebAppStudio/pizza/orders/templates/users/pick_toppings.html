@@ -1,0 +1,86 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Pick your toppings
+{% endblock %}
+
+{% block body %}
+    <h1>Pick your toppings</h1>
+    
+    <!-- This form lets the user choose toppings/additions. -->
+    <form action="/menu" method="POST">
+        {% csrf_token %}      
+        
+        <!-- Show one list if user can choose one topping. -->
+        {% if item == '1 topping' %}
+        <select name="SelectTopping1">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+
+        <!-- Show two lists if user can choose two toppings. -->
+        {% if item == '2 toppings' %}
+        <select name="SelectTopping1">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        <select name="SelectTopping2">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+
+        <!-- Show three lists if user can choose three toppings. -->
+        {% if item == '3 toppings' %}
+        <select name="SelectTopping1">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        <select name="SelectTopping2">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        <select name="SelectTopping3">
+            {% for topping in toppings %}
+            <option value="{{ topping }}">{{ topping }}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+
+        <!-- User can choose extra cheese when they selected a sub. -->
+        {% if category == 'sub' %}
+        <select name="SelectAdditionCheese">
+            <option value="Extra cheese">Extra cheese</option>
+            <option value="No extra">No extra</option>
+        </select>
+        {% endif %}
+
+        <!-- If user selected 'steak and cheese' sub, they can choose several additions. -->
+        {% if item == 'Steak and cheese' %}
+        <select name="SelectAddition1">
+            {% for addition in additions %}
+            <option value="{{ addition }}">{{ addition }}</option>
+            {% endfor %}
+        </select>
+        <select name="SelectAddition2">
+            {% for addition in additions %}
+            <option value="{{ addition }}">{{ addition }}</option>
+            {% endfor %}
+        </select>
+        <select name="SelectAddition3">
+            {% for addition in additions %}
+            <option value="{{ addition }}">{{ addition }}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+
+    <!-- This buttons adds the toppings/additions to the order. -->    
+    <button class="btn btn-outline-info" type="submit">Submit</button>
+</form>
+{% endblock %}

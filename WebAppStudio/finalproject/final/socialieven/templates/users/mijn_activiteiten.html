@@ -1,0 +1,39 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Mijn activiteiten
+{% endblock %}
+
+{% block body %}
+<h2 style="text-align:center">Mijn activiteiten</h2>
+
+<!-- Display all activities this user created. -->
+{% for activiteit in activiteiten %}
+<div class="container">
+    <div><h3>{{ activiteit.name }}</h3></div>
+    <div><p>{{ activiteit.categorie }}</p></div>
+    <div><h6><b>Door wie: </b>{{ activiteit.gebruiker.first_name }}</h6></div>
+    <div><h6><b>Wanneer: </b>{{ activiteit.datum }}</h6></div>
+    <div><h6><b>Hoe laat: </b>{{ activiteit.starttijd }} tot {{ activiteit.eindtijd }}</h6></div>
+    <div><h6 style="margin-bottom: 0"><b>Waar:</b></h6></div>
+    <div>{{ activiteit.straat }} {{ activiteit.huisnummer }}</div>
+    <div>{{ activiteit.postcode }} {{ activiteit.plaats }}</div>
+    {% if activiteit.gebouw %}
+    <div>Gebouw {{ activiteit.gebouw }}, 
+        {% if activiteit.verdieping %}
+        verdieping {{ activiteit.verdieping }}
+        {% endif %}
+    </div>
+    {% endif %}
+    <div>Voor medebewoners: 
+        {% if activiteit.uitgenodigd == True %}
+        Ja
+        {% endif %}
+        {% if activiteit.uitgenodigd == False %}
+        Nee
+        {% endif %}</div>
+    <div><p>{{ activiteit.beschrijving }}</p></div>
+</div> 
+<br>
+{% endfor %}
+{% endblock %}

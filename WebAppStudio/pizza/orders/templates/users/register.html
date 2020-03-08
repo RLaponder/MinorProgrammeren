@@ -1,0 +1,70 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+<h1>Register</h1>
+
+<!-- Registration form -->
+<form class="form-horizontal" action="{% url 'register' %}" onSubmit = "return checkPassword(this)" method="POST">
+    {% csrf_token %}
+    <div class="u-form-group u-form-name">
+        <label for="fname" class="u-form-control-hidden u-label">First name</label>
+        <input type="text" placeholder="First name" id="fname" name="fname" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-group u-form-name">
+        <label for="lname" class="u-form-control-hidden u-label">Last name</label>
+        <input type="text" placeholder="Last name" id="lname" name="lname" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-group u-form-name">
+        <label for="username" class="u-form-control-hidden u-label">Username</label>
+        <input type="text" placeholder="Username" id="username" name="username" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-group u-form-name">
+        <label for="email" class="u-form-control-hidden u-label">Email</label>
+        <input type="text" placeholder="email@example.com" id="email" name="email" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-group u-form-name">
+        <label for="password" class="u-form-control-hidden u-label">Password</label>
+        <input type="password" placeholder="Password" id="password" name="password1" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="u-form-group u-form-name">
+        <label for="password" class="u-form-control-hidden u-label">Password</label>
+        <input type="password" placeholder="Confirm password" id="password" name="password2" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="save"></label>
+        <div class="col-md-8">
+            <button id="save" name="save" class="submit">Register</button>
+        </div>
+    </div>
+</form>
+    
+<script> 
+    // Function to check whether both entered passwords are the same
+    function checkPassword(form) { 
+        password1 = form.password1.value; 
+        password2 = form.password2.value; 
+
+        // Check if password is entered twice.
+        if (password1 == '') 
+            alert ("Please enter Password"); 
+        else if (password2 == '') 
+            alert ("Please enter confirm password"); 
+                
+        // Return false if passwords are not identical.    
+        else if (password1 != password2) { 
+            alert ("\nPassword did not match: Please try again...") 
+            return false; 
+        } 
+
+        // Return true if passwords are identical. 
+        else { 
+            alert("Registration succes") 
+            return true; 
+        } 
+    } 
+</script> 
+{% endblock %}

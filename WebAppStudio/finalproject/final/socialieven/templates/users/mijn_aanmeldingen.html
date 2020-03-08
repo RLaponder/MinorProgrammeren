@@ -1,0 +1,41 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Mijn aanmeldingen
+{% endblock %}
+
+{% block body %}
+<h2 style="text-align:center">Mijn aanmeldingen</h2>
+
+<!-- Display all activities this user created. -->
+{% for aanmelding in aanmeldingen %}
+<div class="container">
+    <div><h3>{{ aanmelding.activiteit.name }}</h3></div>
+    <div><p>{{ aanmelding.activiteit.categorie }}</p></div>
+    <div><h6><b>Door wie: </b>{{ aanmelding.activiteit.gebruiker.first_name }}</h6></div>
+    <div><h6><b>Wanneer: </b>{{ aanmelding.activiteit.datum }}</h6></div>
+    <div><h6><b>Hoe laat: </b>{{ aanmelding.activiteit.starttijd }} tot {{ aanmelding.activiteit.eindtijd }}</h6></div>
+    <div><h6 style="margin-bottom: 0"><b>Waar:</b></h6></div>
+    <div>{{ aanmelding.activiteit.straat }} {{ aanmelding.activiteit.huisnummer }}</div>
+    <div>{{ aanmelding.activiteit.postcode }} {{ aanmelding.activiteit.plaats }}</div>
+    {% if aanmelding.activiteit.gebouw %}
+    <div>Gebouw {{ aanmelding.activiteit.gebouw }}, 
+        {% if aanmelding.activiteit.verdieping %}
+        verdieping {{ aanmelding.activiteit.verdieping }}
+        {% endif %}
+    </div>
+    {% endif %}
+    <div>Voor medebewoners: 
+        {% if aanmelding.activiteit.uitgenodigd == True %}
+        Ja
+        {% endif %}
+        {% if aanmelding.activiteit.uitgenodigd == False %}
+        Nee
+        {% endif %}</div>
+    <div><p>{{ aanmelding.activiteit.beschrijving }}</p></div>
+    <a class="btn btn-info" href="{% url 'afmelden' aanmelding.activiteit.id %}" role="button">Afmelden</a>
+    <a class="btn btn-info" href="{% url 'overlast' aanmelding.activiteit.id %}" role="button">Overlast</a>
+</div> 
+<br>
+{% endfor %}
+{% endblock %}

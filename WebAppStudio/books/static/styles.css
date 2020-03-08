@@ -1,0 +1,36 @@
+body {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.form-inline.my-2.my-lg-0 .custom-select {
+    margin-right: 5px;
+}
+
+.row.book-info {
+    margin: 50px;
+    position: relative;
+}
+
+.review {
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.form-group .custom-select {
+    width: 50px;
+    margin-left: 10px;
+}
+
+textarea.form-control {
+    width: 75%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}

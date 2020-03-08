@@ -1,0 +1,37 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Shopping Cart
+{% endblock %}
+
+{% block body %} 
+
+<h1>Shopping Cart</h1>
+    <p>This is your shopping cart</p>
+    <p>Use coupon "freepizza" for one free pizza.</p>
+
+    <!-- Display all items that the current user has in their shopping cart. -->
+    {% for item in shoppingcart %}
+    <li>
+        {{ item.category }} {{ item.item }} - €{{ item.price }}
+    {% endfor %} 
+
+    <p>Order total: €{{ totalprice }}</p>
+
+    <!-- User can enter a coupon code that will reduce the total order price. -->
+    <form name="RegForm" action="/addcoupon" method="POST">
+        {% csrf_token %}
+        <div class="u-form-group u-form-name">
+            <label for="coupon" class="u-form-control-hidden u-label">Coupon</label>
+            <input type="text" placeholder="Enter coupon" id="fname" name="coupon" class="u-border-1 u-border-grey-5 u-border-radius-25 u-input u-input-round" required="">
+        </div>
+        <button class="submit" type="submit">Use coupon!</button>
+    </form>
+
+    <!-- User can place the order if there is at least one item in shopping cart. -->
+    {% if checkoneitem == True %}
+    <div class="u-form-group u-form-submit">
+        <a href="{% url 'place_order' totalprice %}" class="submit">Place order</a>
+    </div>
+    {% endif %}
+{% endblock %}

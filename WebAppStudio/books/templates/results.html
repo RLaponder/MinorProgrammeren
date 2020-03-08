@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block heading %}
+    Search results
+{% endblock %}
+
+{% block body %}
+    <p>{{ message }} </p>   
+
+    {% for book in booklist %}
+    <ul>
+            <img src="http://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg" width="100px">
+        <a href="{{ url_for('bookpage', book_id=book.id) }}"><b>{{book.isbn}} {{ book.title }}</b> by {{ book.author }}, {{ book.year}}</a>
+    </ul>
+    {% endfor %}
+{% endblock %}

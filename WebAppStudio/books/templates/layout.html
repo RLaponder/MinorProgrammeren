@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!-- navigation bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <!-- Show the login/register menu if a user is not logged in. -->
+                    {% if status == "loggedout" %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign in/Register
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form class="px-4 py-3" action="{{ url_for('index') }}" method="POST">
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormEmail1">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormPassword1">Password</label>
+                                    <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary">Sign in</button>
+                            </form>
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="register">
+                                    New around here? Register
+                                </a>
+                        </div>
+                    </li>
+                </ul>
+                    {% endif %}
+                    
+                    <!-- Show the logout link and the search bar if a user is logged in. -->
+                    {% if status == "loggedin" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout">Logout {{ email }}</a>
+                        </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" onsubmit="return validateForm()" action="{{ url_for('results') }}" method="POST" name="searchform">
+                    <select class="custom-select" id="Dropdown" name="info_type">
+                        <option value="search by" selected disabled >Search by...</option>
+                        <option value="isbn" >ISBN</option>
+                        <option value="title" >Title</option>
+                        <option value="author" >Author</option>
+                        <option value="year" >Year</option>
+                    </select>
+                    <input class="form-control mr-sm-2" name="bookinfo" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                    {% endif %}
+            </div>
+        </nav>
+
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    
+        <!-- Validate wheter the user entered info in the search bar. -->
+        <script>
+            function validateForm()
+            {
+                var info_type = document.forms["searchform"]["info_type"];
+                var bookinfo = document.forms["searchform"]["bookinfo"];
+    
+                if (info_type.value == "search by")
+                {
+                    window.alert("Please select what you would like to search for.");
+                    return false;
+                }
+                if (bookinfo.value == "")
+                {
+                    window.alert("Please enter the book information you would like to search for.");
+                    bookinfo.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        
+        <!-- Bootstrap scripts. -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

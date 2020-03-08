@@ -1,0 +1,92 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block body %}
+    <!-- Display all items on the menu. -->    
+    <h1>Menu</h1>    
+    
+    <!-- Display regular pizzas. -->
+    <h2>Regular pizzas</h2>  
+    {% for pizza in regular_pizzas %}
+    <p>
+        {{ pizza.name }}
+        {% if pizza.name == "Cheese" or pizza.name == "Special" %}
+        <a href="{% url 'add_to_order' 'regular pizza' pizza.name pizza.small_price %}">€{{ pizza.small_price }}</a>
+        | 
+        <a href="{% url 'add_to_order' 'regular pizza' pizza.name pizza.large_price %}">€{{ pizza.large_price }}</a>
+        {% else %}
+        <a href="{% url 'pick_toppings' 'regular pizza' pizza.name pizza.small_price %}">€{{ pizza.small_price }}</a>
+        | 
+        <a href="{% url 'pick_toppings' 'regular pizza' pizza.name pizza.large_price %}">€{{ pizza.large_price }}</a>
+        {% endif %}
+    </p>
+    {% endfor %}
+    
+    <!-- Display sicilian pizzas. -->
+    <h2>Sicilian pizzas</h2>  
+    {% for pizza in sicilian_pizzas %}
+    <p>
+        {{ pizza.name }}
+        {% if pizza.name == "Cheese" %}
+        <a href="{% url 'add_to_order' 'sicilian pizza' pizza.name pizza.small_price %}">€{{ pizza.small_price }}</a>
+        | 
+        <a href="{% url 'add_to_order' 'sicilian pizza' pizza.name pizza.large_price %}">€{{ pizza.large_price }}</a>
+        {% else %}
+        <a href="{% url 'pick_toppings' 'sicilian pizza' pizza.name pizza.small_price %}">€{{ pizza.small_price }}</a>
+        | 
+        <a href="{% url 'pick_toppings' 'sicilian pizza' pizza.name pizza.large_price %}">€{{ pizza.large_price }}</a>
+        {% endif %}
+    </p>
+    {% endfor %}   
+    
+    <!-- Display toppings. -->
+    <h2>Toppings</h2>  
+    {% for topping in toppings %}
+    <p>
+        {{ topping }}
+    </p>
+    {% endfor %}  
+    
+    <!-- Display subs. -->
+    <h2>Subs</h2>  
+    {% for sub in subs %}
+    <p>
+        {{ sub.name }}
+        <a href="{% url 'pick_toppings' 'sub' sub.name sub.small_price %}">€{{ sub.small_price }}</a>
+        | 
+        <a href="{% url 'pick_toppings' 'sub' sub.name sub.large_price %}">€{{ sub.large_price }}</a>
+    </p>
+    {% endfor %}  
+    
+    <!-- Display pastas. -->
+    <h2>Pastas</h2>  
+    {% for pasta in pastas %}
+    <p>
+        {{ pasta.name }}
+        <a href="{% url 'add_to_order' 'pasta' pasta.name pasta.price %}">€{{ pasta.price }}</a>
+    </p>
+    {% endfor %}  
+    
+    <!-- Display salads. -->
+    <h2>Salads</h2>  
+    {% for salad in salads %}
+    <p>
+        {{ salad.name }}
+        <a href="{% url 'add_to_order' 'salad' salad.name salad.price %}">€{{ salad.price }}</a>
+    </p>
+    {% endfor %}  
+    
+    <!-- Display dinner platters. -->
+    <h2>Dinner platters</h2>  
+    {% for dinnerplatter in dinnerplatters %}
+    <p>
+        {{ dinnerplatter.name }}
+        <a href="{% url 'add_to_order' 'dinnerplatter' dinnerplatter.name dinnerplatter.small_price %}">€{{ dinnerplatter.small_price }}</a>
+        | 
+        <a href="{% url 'add_to_order' 'dinnerplatter' dinnerplatter.name dinnerplatter.large_price %}">€{{ dinnerplatter.large_price }}</a>
+    </p>
+    {% endfor %}  
+{% endblock %}

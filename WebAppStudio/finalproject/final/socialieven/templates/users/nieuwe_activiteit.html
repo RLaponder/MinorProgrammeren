@@ -1,0 +1,117 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Nieuwe activiteit
+{% endblock %}
+
+{% block body %}
+<h2 class="register-form">Creëer een nieuwe activiteit</h2>
+
+<!-- A user creates a new activity via the following form. -->
+<div class="container" style="margin-bottom:0">
+    <form action="nieuwe_activiteit" method="POST" class="register-form">
+        {% csrf_token %}
+        
+        <!-- naam -->
+        <div class="form-group">
+            <label for="naam">Geef je activiteit een naam</label>
+            <input type="text" class="form-control" id="naam" name="naam" placeholder="Bijvoorbeeld: 'Verjaardag van Lotte'">
+        </div>
+        
+        <!-- datum -->
+        <div class="form-group">
+            <label for="datum">Wanneer vindt de activiteit plaats</label>
+            <input type="date" class="form-control" id="datum" name="datum" placeholder="Datum">
+        </div>
+        
+        <!-- starttijd -->
+        <div class="form-group">
+            <label for="starttijd">Hoe laat begint de activiteit</label>
+            <input type="time" class="form-control" id="starttijd" name="starttijd" placeholder="Begintijd">
+        </div>
+        
+        <!-- eindtijd -->
+        <div class="form-group">
+            <label for="eindtijd">Hoe laat eindigt de activiteit</label>
+            <input type="time" class="form-control" id="eindtijd" name="eindtijd" placeholder="Eindtijd">
+        </div>
+
+        <!-- locatie -->
+        Locatie van de activiteit
+        
+        <!-- straat -->
+        <div class="form-group">
+            <label for="straat">Straat</label>
+            <input type="text" class="form-control" id="straat" name="straat" placeholder="Bijvoorbeeld: 'Maassluisstraat'">
+        </div>
+        
+        <!-- huisnummer -->
+        <div class="form-group">
+            <label for="huisnummer">Huisnummer</label>
+            <input type="number" class="form-control" id="huisnummer" name="huisnummer" placeholder="Huisnummer">
+        </div>
+        
+        <!-- postcode -->
+        <div class="form-group">
+            <label for="postcode">Postcode</label>
+            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postcode">
+        </div>
+        
+        <!-- plaats -->
+        <div class="form-group">
+            <label for="plaats">Plaats</label>
+            <input type="text" class="form-control" id="plaats" name="plaats" placeholder="Bijvoorbeeld: 'Amsterdam'">
+        </div>
+
+        <!-- optioneel -->
+        <p>Vul het gebouw en de verdieping in als de activiteit op Lieven zal plaatsvinden</p>
+        
+        <!-- gebouw -->
+        <div class="form-group">
+            <label for="gebouw">Gebouw</label>
+            <input type="number" class="form-control" id="gebouw" name="gebouw" placeholder="Bijvoorbeeld: '2' voor Lieven 2">
+        </div>
+        
+        <!-- verdieping -->
+        <div class="form-group">
+            <label for="verdieping">Verdieping</label>
+            <input type="number" class="form-control" id="verdieping" name="verdieping" placeholder="Bijvoorbeeld: '0' voor begane grond">
+        </div>
+                
+        <!-- categorie -->
+        <div class="form-group">
+            <label for="categorie">Kies de categorie die het meest past bij deze activiteit</label>
+            <select class="form-control" id="categorie" name="categorie">
+                <option>Verjaardag</option>
+                <option>Filmavond</option>
+                <option>Samen koken</option>
+                <option>Feestje</option>
+                <option>Overig</option>
+            </select>
+        </div>
+        
+        <!-- medebewoners uitgenodigd -->
+        <div class="form-group">
+            <label for="uitgenodigd">Zijn medebewoners uitgenodigd?</label>
+            <select class="form-control" id="uitgenodigd" name="uitgenodigd">
+                <option>Ja</option>
+                <option>Nee</option>
+            </select>
+        </div>
+        
+        <!-- beschrijving -->
+        <div class="form-group">
+            <label for="beschrijving">Geef een beschrijving van je activiteit. Dit zal te zien zijn op de activiteiten-pagina.</label>
+            <textarea class="form-control" id="beschrijving" name="beschrijving" rows="5"></textarea>
+        </div>
+        
+        <!-- submit -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="save"></label>
+            <div>
+                <button id="save" name="save" class="submit btn btn-info">Activiteit indienen</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

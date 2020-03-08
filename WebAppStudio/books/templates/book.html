@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block heading %}
+{% endblock %}
+
+{% block body %}
+    <!-- Show information about the book. -->
+    <div class="row book-info">
+        <div class="col-sm"></div>
+        <div class="col-sm" style="text-align:center">
+            <img src="http://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg" height="200px"> 
+        </div>
+        <div class="col-sm my-auto" style="text-align:center">
+            <h2>{{ book.title }}</h2>
+            ISBN: {{ book.isbn }}<br>
+            Author: {{ book.author }}<br>
+            Year: {{ book.year }}<br>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    
+    {{ description|striptags }}<br>
+    
+    <!-- Here the user can leave a review for the book. -->
+    <h2 style="margin-top:50px">Leave a review:</h2>
+    <form action="{{ url_for('bookpage', book_id=book.id) }}" method="POST">
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select class="custom-select" name="rating" id="Dropdown" required>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Say something about this book:</label>
+            <textarea class="form-control" rows="5" name="written_review"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-primary" type="submit">Submit review</button>
+        </div>
+    </form>
+
+    <!-- Goodreads ratings and reviews. -->
+    <br><h3>What Goodreaders think of this book:</h3>
+    <p>
+    Total number of ratings : {{ ratings_count }} <br>
+    Average rating : {{ average_rating }}<br>
+    </p>
+
+    <h3>Reviews:</h3>
+    <div class="rating_local">
+        {% for name, review in listed_reviews %}
+        <div class="review">
+            <h5>{{ name }} says:</h5>
+            <strong>Rating: </strong> {{ review.rating }} <br>
+            <p>
+                {{ review.written_review }}
+            </p>
+        </div>    
+        {% endfor %}
+
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Registreren
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center"><h1>Registreren</h1></div>
+
+<!-- Registration form -->
+
+<div class="d-flex justify-content-center">
+    <form class="form-horizontal" action="register" onSubmit="return checkForm(this)" method="POST" style="margin-bottom:5vw; color:white">
+        {% csrf_token %}
+        
+        <!-- voornaam -->
+        <div class="form-group register">
+            <label for="voornaam">Voornaam</label>
+            <input type="text" placeholder="Voornaam" id="voornaam" name="voornaam" class="form-control" required="">
+        </div>
+        
+        <!-- achternaam -->
+        <div class="form-group register">
+            <label for="achternaam">Achternaam</label>
+            <input type="text" placeholder="Achternaam" id="achternaam" name="achternaam" class="form-control" required="">
+        </div>
+        
+        <!-- gebruikersnaam -->
+        <div class="form-group register">
+            <label for="gebruikersnaam">Gebruikersnaam</label>
+            <input type="text" placeholder="Gebruikersnaam" id="gebruikernaam" name="gebruikersnaam" class="form-control" required="">
+        </div>
+        
+        <!-- email -->
+        <div class="form-group register">
+            <label for="email">E-mail adres</label>
+            <input type="text" placeholder="email@voorbeeld.com" id="email" name="email1" class="form-control" required="">
+        </div>
+        
+        <!-- bevestig email -->
+        <div class="form-group register">
+            <label for="email">Herhaal E-mail adres</label>
+            <input type="text" placeholder="email@voorbeeld.com" id="email" name="email2" class="form-control" required="">
+        </div>
+        
+        <!-- wachtwoord -->
+        <div class="form-group register">
+            <label for="wachtwoord">Wachtwoord</label>
+            <input type="password" placeholder="Wachtwoord" id="wachtwoord" name="wachtwoord1" class="form-control" required="">
+        </div>
+        
+        <!-- bevestig wachtwoord -->
+        <div class="form-group register">
+            <label for="wachtwoord">Herhaal wachtwoord</label>
+            <input type="password" placeholder="Herhaal wachtwoord" id="wachtwoord" name="wachtwoord2" class="form-control" required="">
+        </div>
+        
+        <!-- geboortedatum -->
+        <div class="form-group register">
+            <label for="geboortedatum">Geboortedatum</label>
+            <input type="date" placeholder="Geboortedatum" id="geboortedatum" name="geboortedatum" class="form-control" required="">
+        </div>
+        
+        <!-- straat -->
+        <div class="form-group register">
+            <label for="straat">Straat</label>
+            <input type="text" placeholder="Straat" id="straat" name="straat" class="form-control" required="">
+        </div>
+        
+        <!-- huisnummer -->
+        <div class="form-group register">
+            <label for="huisnummer">Huisnummer</label>
+            <input type="number" placeholder="Huisnummer" id="huisnummer" name="huisnummer" class="form-control" required="">
+        </div>
+        
+        <!-- postcode -->
+        <div class="form-group register">
+            <label for="postcode">Postcode</label>
+            <input type="text" placeholder="Postcode" id="postcode" name="postcode" class="form-control" required="">
+        </div>
+        
+        <!-- woonplaats -->
+        <div class="form-group register">
+            <label for="woonplaats">Woonplaats</label>
+            <input type="text" placeholder="Woonplaats" id="woonplaats" name="woonplaats" class="form-control" required="">
+        </div>
+        
+        <!-- gebouw -->
+        <div class="form-group register">
+            <label for="gebouw">Gebouw</label>
+            <input type="number" placeholder="Bijvoorbeeld '2' voor Lieven 2" id="gebouw" name="gebouw" class="form-control" required="">
+        </div>
+        
+        <!-- verdieping -->
+        <div class="form-group register">
+            <label for="verdieping">Verdieping</label>
+            <input type="number" placeholder="Bijvoorbeeld '0' voor begane grond" id="verdieping" name="verdieping" class="form-control" required="">
+        </div>
+        
+        <!-- submit -->
+        <div class="form-group register" style="text-align:center; margin-top:5vw">
+            <label for="save"></label>
+            <button id="save" name="save" class="submit btn btn-info">Registreer</button>
+        </div>
+    </form>
+</div>
+    
+<script> 
+    // Function to check whether both entered passwords are the same
+    function checkForm(form) { 
+        wachtwoord1 = form.wachtwoord1.value; 
+        wachtwoord2 = form.wachtwoord2.value;
+        email1 = form.email1.value;
+        email2 = form.email2.value;
+
+        // Check if password is entered twice.
+        if (wachtwoord1 == '') 
+            alert ("Voer alstublieft een wachtwoord in."); 
+        else if (wachtwoord2 == '') 
+            alert ("Herhaal alstublieft het gekozen wachtwoord."); 
+
+        // Check if email is entered twice.
+        else if (email1 == '')
+            alert ("Voer alstublieft een e-mail adres in.")
+        else if (email2 == '')
+            alert ("Herhaal alstublieft het ingevoerde e-mail adres.")
+                
+        // Return false if passwords are not identical.    
+        else if (wachtwoord1 != wachtwoord2) { 
+            alert ("\nDe ingevoerde wachtwoorden komen niet overeen...") 
+            return false; 
+        } 
+
+        // Return false if entered email adressess are not identical.
+        else if (email1 != email2) {
+            alert ("\nDe ingevoerde e-mail adressen komen niet overeen...")
+            return false;
+        }
+
+        // Return true if passwords are identical. 
+        else { 
+            return true; 
+        } 
+    } 
+</script> 
+{% endblock %}

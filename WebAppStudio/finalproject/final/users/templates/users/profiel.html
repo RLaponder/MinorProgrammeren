@@ -1,0 +1,46 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+    Profiel
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="../../../static/nicepage_profiel.css" media="screen">
+{% endblock %}
+
+{% block body %}
+<!-- Display user informaiton. -->
+<section class="u-align-left u-clearfix u-section-1" id="sec-9ecc">
+    <div class="u-clearfix u-sheet u-sheet-1 container" style="margin-bottom:5vw">
+        <h3 style="margin-bottom:-3vw; margin-top:4vw">Profiel</h3>
+        <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+                <div class="u-layout-row">
+                    
+                    <!-- Display image. -->
+                    <div class="u-container-style u-expand-resize u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                        <div class="u-container-layout u-container-layout-1">
+                            <div class="u-grey-10 u-opacity u-opacity-50 u-shape u-shape-rectangle u-shape-1" style="background-color:#357D89"></div>
+                            <img class="u-image u-image-1" src="../../../../static/user.PNG" data-image-width="150" data-image-height="150">
+                        </div>
+                    </div>
+                    
+                    <!-- Display information. -->
+                    <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                        <div class="u-container-layout u-valign-middle u-container-layout-2">
+                            <h5 class="u-text u-text-1">Naam<br></h5>
+                            <p class="u-text u-text-2">{{ user.first_name }} {{ user.last_name }}</p>
+                            <h5 class="u-text u-text-3">E-mail<br></h5>
+                            <p class="u-text u-text-4">{{ user.email }}<br></p>
+                            <h5 class="u-text u-text-5">Adres<br></h5>
+                            <p class="u-text u-text-6">{{ user.straat }} {{ user.huisnummer }}<br></p>
+                            <p class="u-text u-text-7">{{ user.postcode }} {{ user.woonplaats }}<br></p>
+                            <p class="u-text u-text-7">Gebouw {{ user.gebouw }}, verdieping {{ user.verdieping }}<br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
